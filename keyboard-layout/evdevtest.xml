@@ -6894,24 +6894,7 @@
     </layout>
     <layout>
       <configItem>
-
-      <configItem>
-    <name>custom</name>
-           <shortDescription>custom</shortDescription>
-           <description>A Programmer layout</description>
-           <languageList>
-             <iso639Id>und</iso639Id>
-           </languageList>
-         </configItem>
-         <variantList>
-           <variant>
-             <configItem>
-               <name>latin</name>
-               <description>Standard Layout</description>
-             </configItem>
-           </variant>
-         </variantList>
-
+	<name>custom</name>
         <shortDescription>custom</shortDescription>
         <description>A user-defined custom Layout</description>
         <languageList>
@@ -6921,7 +6904,22 @@
       <variantList/>
     </layout>
   </layoutList>
-
+<configItem>
+    <name>custom</name>
+    <shortDescription>custom</shortDescription>
+    <description>A Programmer layout</description>
+    <languageList>
+	<iso639Id>und</iso639Id>
+    </languageList>
+</configItem>
+<variantList>
+    <variant>
+	<configItem>
+	    <name>latin</name>
+	    <description>Standard Layout</description>
+	</configItem>
+    </variant>
+</variantList>
   <optionList>
     <group allowMultipleSelection="true">
       <!-- The key combination used to switch between groups -->
@@ -8349,6 +8347,7 @@
     </group>
     <group allowMultipleSelection="true">
       <configItem>
+        <name>custom</name>
         <description>Miscellaneous options</description>
       </configItem>
       <option>
@@ -8358,6 +8357,21 @@
         </configItem>
       </option>
     </group>
-  </optionList>
+<configItem>
+    <name>custom</name>
+    <shortDescription>custom</shortDescription>
+    <description>A Programmer layout</description>
+    <languageList>
+	<iso639Id>und</iso639Id>
+    </languageList>
+</configItem>
+<variantList>
+    <variant>
+	<configItem>
+	    <name>latin</name>
+	    <description>Standard Layout</description>
+	</configItem>
+    </variant>
+</variantList>
 
 </xkbConfigRegistry>
