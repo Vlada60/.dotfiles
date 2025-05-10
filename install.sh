@@ -241,6 +241,7 @@ create_fastfetch_config() {
 link_config() {
     USER_HOME=$(getent passwd "${SUDO_USER:-$USER}" | cut -d: -f6)
     OLD_BASHRC="$USER_HOME/.bashrc"
+    OLD_STARSHIP="$USER_HOME/.config/starship.toml"
     BASH_PROFILE="$USER_HOME/.bash_profile"
     
     if [ -e "$OLD_BASHRC" ]; then
@@ -251,8 +252,30 @@ link_config() {
         fi
     fi
 
+    if [ -e "$OLD_STARSHIP" ]; then
+        print_colored "$YELLOW" "Moving old starship config file to $USER_HOME/.config/starship.bak"
+        if ! mv "$OLD_STARSHIP" "$USER_HOME/.config/starship.bak"; then
+            print_colored "$RED" "Can't move the old bash config file!"
+            exit 1
+        fi
+    fi
+
+    if [ -e "$USER_HOME/.config/nvim" ]; then 
+        print_colored "$YELLOW" "Moving old nvim config file to $USER_HOME/.config/nvim_bak"
+        if ! mv "$USER_HOME/.config/nvim" "$USER_HOME/.config/nvim_bak"; then
+            print_colored "$RED" "Can't move the old nvim config file!"
+            exit 1
+        fi
+    fi
+
     print_colored "$YELLOW" "Linking new bash config file..."
     if ! ln -svf "$FILEPATH/mybash/.bashrc" "$USER_HOME/.bashrc" || ! ln -svf "$FILEPATH/mybash/starship.toml" "$USER_HOME/.config/starship.toml"; then
+        print_colored "$RED" "Failed to create symbolic links"
+        exit 1
+    fi
+
+    print_colored "$YELLOW" "Linking new nvim config file..."
+    if ! ln -svf "$FILEPATH/nvim/" "$USER_HOME/.config/nvim"; then
         print_colored "$RED" "Failed to create symbolic links"
         exit 1
     fi
