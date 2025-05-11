@@ -6910,6 +6910,51 @@
             </variant>
         </variantList>
     </layout>
+    <layout>
+      <configItem>
+	<name>ags</name>
+        <shortDescription>AGS</shortDescription>
+	<description>A good serbian layout</description>
+      </configItem>
+      <variantList>
+        <variant>
+          <configItem>
+            <name>programming</name>
+            <description>Programming Layout</description>
+          </configItem>
+        </variant>
+	<variant>
+          <configItem>
+            <name>cyrillic</name>
+            <description>Good Serbian (Cyrillic)</description>
+          </configItem>
+        </variant>
+	<variant>
+          <configItem>
+            <name>cyrillicnocaps</name>
+            <description>Good Serbian (Cyrillic, No CapsLock to Escape)</description>
+          </configItem>
+        </variant>
+	<variant>
+          <configItem>
+            <name>nocaps</name>
+            <description>Good Serbian (Latin, No CapsLock to Escape)</description>
+          </configItem>
+	</variant>
+	<variant>
+          <configItem>
+            <name>programmingnocaps</name>
+            <description>Programming Layout (No CapsLock to Escape)</description>
+          </configItem>
+	</variant>
+	<variant>
+          <configItem>
+            <name>latinyz</name>
+            <description>Good Serbian (Latin, QWERTY)</description>
+          </configItem>
+	</variant>
+      </variantList>
+    </layout>
   </layoutList>
 
   <optionList>

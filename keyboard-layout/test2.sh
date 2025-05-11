@@ -1,4 +1,4 @@
-sed --debug -i '/<layout>/,/<\/layout>/ {
+sed -i '/<layout>/,/<\/layout>/ {
 /<name>custom<\/name>/ {
 :a
 $!N
