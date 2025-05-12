@@ -203,7 +203,7 @@ xkb_symbols "latin" {
     key <AD03>	{ [            e,          E ] };
     key <AD04>	{ [            r,          R ] };
     key <AD05>	{ [            t,          T ] };
-    key <AD06>	{ [            y,          Y ] };
+    key <AD06>	{ [            z,          Z ] };
     key <AD07>	{ [            u,          U ] };
     key <AD08>	{ [            i,          I ] };
     key <AD09>	{ [            o,          O ] };
@@ -219,7 +219,7 @@ xkb_symbols "latin" {
     key <AC08>	{ [            k,          K ] };
     key <AC09>	{ [            l,          L ] };
 
-    key <AB01>	{ [            z,          Z ] };
+    key <AB01>	{ [            y,          Y ] };
     key <AB02>	{ [            x,          X ] };
     key <AB03>	{ [            c,          C ] };
     key <AB04>	{ [            v,          V ] };
