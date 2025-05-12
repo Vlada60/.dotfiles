@@ -265,6 +265,13 @@ link_config() {
         fi
     fi
 
+    if [ -e "$USER_HOME/.config/kitty" ]; then 
+        print_colored "$YELLOW" "Moving old kitty config file to $USER_HOME/.config/kitty_bak"
+        if ! mv "$USER_HOME/.config/kitty" "$USER_HOME/.config/kitty_bak"; then
+            print_colored "$RED" "Can't move the old nvim config file!"
+        fi
+    fi
+
     print_colored "$YELLOW" "Linking new bash config file..."
     if ! ln -svf "$FILEPATH/mybash/.bashrc" "$USER_HOME/.bashrc"; then
         print_colored "$RED" "Failed to create symbolic links"
@@ -282,6 +289,11 @@ link_config() {
 
     print_colored "$YELLOW" "Linking new nvim config file..."
     if ! ln -svf "$FILEPATH/nvim/" "$USER_HOME/.config/nvim"; then
+        print_colored "$RED" "Failed to create symbolic links"
+    fi
+
+    print_colored "$YELLOW" "Linking new kitty config file..."
+    if ! ln -svf "$FILEPATH/kitty/" "$USER_HOME/.config/kitty"; then
         print_colored "$RED" "Failed to create symbolic links"
     fi
 
