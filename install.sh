@@ -78,7 +78,7 @@ check_environment() {
 }
 
 install_dependencies() {
-    DEPENDENCIES='bash bash-completion tar bat tree multitail fastfetch wget unzip fontconfig trash-cli fzf zoxide nvim'
+    DEPENDENCIES='bash bash-completion tar bat tree fastfetch wget unzip fontconfig trash-cli fzf zoxide nvim thefuck'
 
     print_colored "$YELLOW" "Installing dependencies..."
     case "$PACKAGER" in
