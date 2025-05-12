@@ -31,9 +31,11 @@ fi
 if [[ $iatest -gt 0 ]]; then bind "set bell-style none"; fi
 
 # Expand the history size
-export HISTFILESIZE=10000
+export HISTFILESIZE=100000
 export HISTSIZE=500
-export HISTTIMEFORMAT="%F %T" # add timestamp to history
+
+# add timestamp to history
+export HISTTIMEFORMAT="%F %T " 
 
 # Don't put duplicate lines in the history and do not add lines that start with a space
 export HISTCONTROL=erasedups:ignoredups:ignorespace
@@ -51,25 +53,13 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_CACHE_HOME="$HOME/.cache"
 
-# Seeing as other scripts will use it might as well export it
-export LINUXTOOLBOXDIR="$HOME/linuxtoolbox"
-
 # Allow ctrl-S for history navigation (with ctrl-R)
 [[ $- == *i* ]] && stty -ixon
-
-# Ignore case on auto-completion
-# Note: bind used instead of sticking these in .inputrc
-if [[ $iatest -gt 0 ]]; then bind "set completion-ignore-case on"; fi
-
-# Show auto-completion list automatically, without double tab
-if [[ $iatest -gt 0 ]]; then bind "set show-all-if-ambiguous On"; fi
 
 # Set the default editor
 if command -v nvim &> /dev/null; then
     export EDITOR=nvim
     export VISUAL=nvim
-    alias vim='nvim'
-    alias vi='nvim'
     alias svi='sudo nvim'
     alias vis='nvim "+set si"'
     alias edit='nvim'
@@ -83,16 +73,10 @@ alias snano='sudo nano'
 # To have colors for ls and all grep commands such as grep, egrep and zgrep
 export CLICOLOR=1
 export LS_COLORS='no=00:fi=00:di=00;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.avi=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.ogg=01;35:*.mp3=01;35:*.wav=01;35:*.xml=00;31:'
-#export GREP_OPTIONS='--color=auto' #deprecated
 
-# Check if ripgrep is installed
-# if command -v rg &> /dev/null; then
-#     # Alias grep to rg if ripgrep is installed
-#     alias grep='rg'
-# else
-#     # Alias grep to /usr/bin/grep with GREP_OPTIONS if ripgrep is not installed
-#     alias grep="/usr/bin/grep $GREP_OPTIONS"
-# fi
+# export GREP_OPTIONS='--color=auto' #deprecated
+# alias grep="/usr/bin/grep $GREP_OPTIONS"
+
 unset GREP_OPTIONS
 
 # Color for manpages in less makes manpages a little easier to read
@@ -146,17 +130,12 @@ if command -v trash &> /dev/null; then
 else
     alias rm='rm -i'  # fallback to interactive remove
 fi
-#alias mkdir='mkdir -p'
+alias mkdir='mkdir -p'
 alias ps='ps auxf'
 alias less='less -R'
 alias cls='clear'
-alias apt-get='sudo apt-get'
+alias yum='sudo dnf'
 alias multitail='multitail --no-repeat -c'
-alias freshclam='sudo freshclam'
-alias vi='nvim'
-alias svi='sudo vi'
-alias vis='nvim "+set si"'
-
 
 # Change directory aliases
 alias home='cd ~'
@@ -170,26 +149,26 @@ alias .....='cd ../../../..'
 alias bd='cd "$OLDPWD"'
 
 # Remove a directory and all files
-alias rmd='/bin/rm  --recursive --force --verbose '
+alias rmd='/bin/rm  --recursive --force --verbose -i'
 
 # aliases for multiple directory listing commands
-alias la='ls -Alh'                # show hidden files
-alias ls='ls -aFh --color=always' # add colors and file type extensions
-alias lx='ls -lXBh'               # sort by extension
-alias lk='ls -lSrh'               # sort by size
-alias lc='ls -ltcrh'              # sort by change time
-alias lu='ls -lturh'              # sort by access time
-alias lr='ls -lRh'                # recursive ls
-alias lt='ls -ltrh'               # sort by date
-alias lm='ls -alh |more'          # pipe through 'more'
-alias lw='ls -xAh'                # wide listing format
-alias ll='ls -Fls'                # long listing format
-alias labc='ls -lap'              # alphabetical sort
-alias lf="ls -l | egrep -v '^d'"  # files only
-alias ldir="ls -l | egrep '^d'"   # directories only
-alias lla='ls -Al'                # List and Hidden Files
-alias las='ls -A'                 # Hidden Files
-alias lls='ls -l'                 # List
+alias la='ls -Ah'                              # show hidden files
+alias ls='ls --color=always'                   # add colors and file type extensions
+alias lx='ls -lXBh'                            # sort by extension
+alias lk='ls -lSrh'                            # sort by size
+alias lc='ls -ltcrh'                           # sort by change time
+alias lu='ls -lturh'                           # sort by access time
+alias lr='ls -lRh'                             # recursive ls
+alias lt='ls -ltrh'                            # sort by date
+alias lm='ls -alh |more'                       # pipe through 'more'
+alias lw='ls -xAh'                             # wide listing format
+alias ll='ls -FlSsh --group-directories-first' # long listing format
+alias labc='ls -lap'                           # alphabetical sort
+alias lf="ls -l | egrep -v '^d'"               # files only
+alias ldir="ls -l | egrep '^d'"                # directories only
+alias lla='ls -Al'                             # List and Hidden Files
+alias las='ls -A'                              # Hidden Files
+alias lls='ls -l'                              # List
 
 # alias chmod commands
 alias mx='chmod a+x'
@@ -200,7 +179,7 @@ alias 755='chmod -R 755'
 alias 777='chmod -R 777'
 
 # Search command line history
-alias h="history | fzf "
+alias h="cat ~/.bash_history | fzf --height=60%"
 
 # Search running processes
 alias p="ps aux | grep "
@@ -601,12 +580,13 @@ trim() {
 	var="${var%"${var##*[![:space:]]}"}" # remove trailing whitespace characters
 	echo -n "$var"
 }
-# GitHub Titus Additions
 
+# GitHub Titus Additions
 gcom() {
 	git add .
 	git commit -m "$1"
 }
+
 lazyg() {
 	git add .
 	git commit -m "$1"
@@ -647,11 +627,38 @@ fi
 
 alias findfolder="cd \"\$(find * -type d 2> /dev/null | fzf --preview 'ls --color -lah {} && echo \"\" && tree -C -L 3 {}' --bind 'ctrl-p:toggle-preview' --bind 'ctrl-v:change-preview-window(50%,bottom|50%,right)')\""
 
+alias findhiddenfolder="cd \"\$(find . -type d 2> /dev/null | fzf --preview 'ls --color -lah {} && echo \"\" && tree -C -L 3 {}' --bind 'ctrl-p:toggle-preview' --bind 'ctrl-v:change-preview-window(50%,bottom|50%,right)')\""
+
+findandeditfile(){
+    FILEPATH="$(fzf --preview 'bat --style="changes,numbers,snip" --color=always {}' --bind 'ctrl-p:toggle-preview' --bind 'ctrl-v:change-preview-window(50%,bottom|50%,right)')"
+    if [ -e "$FILEPATH" ]; then
+	nvim $FILEPATH
+    fi
+    unset $FILEPATH
+}
+
+
+
 # Check if the shell is interactive
 if [[ $- == *i* ]]; then
-    # Bind Ctrl+f to insert 'zi' followed by a newline
+    # Bind Ctrl+t to insert 'findfolder' followed by a newline
     bind -m vi-insert '"\C-t":"findfolder\n"'
     bind '"\C-t":"findfolder\n"'
+fi
+if [[ $- == *i* ]]; then
+    # Bind Ctrl+h to insert 'findhiddenfolder' followed by a newline
+    bind -m vi-insert '"\C-h":"findhiddenfolder\n"'
+    bind '"\C-h":"findhiddenfolder\n"'
+fi
+if [[ $- == *i* ]]; then
+    # Bind Ctrl+e to insert 'findandeditfile' followed by a newline
+    bind -m vi-insert '"\C-e":"findandeditfile\n"'
+    bind '"\C-e":"findandeditfile\n"'
+fi
+if [[ $- == *i* ]]; then
+    # Bind Ctrl+r to insert '$(h)' followed by a newline
+    bind -m vi-insert '"\C-r":"$(h)\n"'
+    bind '"\C-e":"$(h)\n"'
 fi
 
 export PATH=$PATH:"$HOME/.local/bin:$HOME/.cargo/bin:/var/lib/flatpak/exports/bin:/.local/share/flatpak/exports/bin"
